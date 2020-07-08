@@ -1,40 +1,55 @@
 <template>
    <div id="home">
      <NavBar class="navbar-color"><div slot="center">购物街</div></NavBar>
-    <HomeShop>
-      <div  class="box-img" v-for="item in lbt" >
-        <a href="#" >
-          <img :src="item.img" class="img" >
-        </a>
-        <div class="desc">
-          <h1>商品名称：{{item.sname}}</h1>
-          <h1>商品价格：￥{{item.price}}</h1>
-        </div>
-      </div>
-    </HomeShop>
+      <Swiper>
+        <SwiperItem v-for="(item,index) in shops">
+         <div @click="lbtclick(index)">
+           <img :src="item.img" >
+         </div>
+        </SwiperItem>
+
+
+      </Swiper>
+
+    <HomeList :shopList="shops"></HomeList>
    </div>
 </template>
 
 <script>
   import NavBar from "components/common/navbar/NavBar.vue";
   import {getHomelbt} from "../../notwork/home";
-  import HomeShop from "../../components/common/shops/HomeShop";
+  import HomeList from "../../components/common/shops/ShopList";
+
+  import Swiper from "components/common/swiper/Swiper";
+  import SwiperItem from "../../components/common/swiper/SwiperItem";
 
   export default {
        name: "Home",
        data(){
          return{
-           lbt:[],
+           shops:[],
+           sid:null,
          }
        },
       components:{
+         HomeList,
          NavBar,
-        HomeShop
+         Swiper,
+         SwiperItem
       },
     created() {
          getHomelbt().then(res=>{
-          this.lbt=res.data;
+          this.shops=res.data;
          })
+    },methods:{
+         lbtclick:function (index) {
+           this.$router.push({
+             path:'/details',
+             query:{
+               sid:this.shops[index].sid
+             }
+           })
+         }
     }
   }
 </script>
@@ -44,16 +59,5 @@
     background-color: var(--color-tint);
   }
 
-  .img{
-    width: 400px;
-    height: 450px;
-    margin-left:  30px;
-  }
 
-  .box-img{
-    float: left;
-  }
-  .desc{
-    margin-left: 30px;
-  }
 </style>

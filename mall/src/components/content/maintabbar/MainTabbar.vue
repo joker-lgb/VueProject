@@ -8,7 +8,7 @@
         <img  slot="item-icon" src="~assets/img/tabbar/menu.png">
         <div slot="item-text">分类</div>
       </TabBaritem>
-      <TabBaritem path="/cart" activeColor="blue">
+      <TabBaritem path="/card" activeColor="blue">
         <img  slot="item-icon" src="~assets/img/tabbar/cart.png">
         <div slot="item-text">购物车</div>
       </TabBaritem>
