@@ -4,12 +4,15 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const Home= () => import('../views/home/Home')
-const Card=()=>import('../views/card/Card')
+const Cart=()=>import('../views/cart/Cart')
 const Profile=() => import('../views/profile/Profile')
-const Category=() => import('../views/category/Category')
 const details=() => import('../views/details/DetailsShop')
 const register=() =>import('../views/profile/Register')
 const login=() =>import('../views/profile/login')
+const clothes=() =>import('../views/category/Clothes')
+const shoe=()=>import('../views/category/Shoe')
+const pants=()=>import('../views/category/Pants')
+
 
 const routes=[
   {
@@ -20,15 +23,11 @@ const routes=[
     path:'/home',
     component:Home,
   },{
-    path: '/card',
-    component:Card,
+    path: '/cart',
+    component:Cart,
   },{
     path: '/profile',
     component:Profile
-  },
-  {
-    path: '/category',
-    component:Category
   },
   {
     path: '/details',
@@ -39,6 +38,15 @@ const routes=[
   },{
     path: '/login',
     component:login
+  },{
+    path: '/clothes',
+    component:clothes
+  },{
+   path: '/shoe',
+   component:shoe
+  },{
+   path: '/pants',
+   component:pants
   }
 
 ]

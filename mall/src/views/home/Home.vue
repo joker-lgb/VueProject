@@ -2,23 +2,23 @@
    <div id="home">
      <NavBar class="navbar-color"><div slot="center">购物街</div></NavBar>
       <Swiper>
-        <SwiperItem v-for="(item,index) in shops">
+        <SwiperItem v-for="(item,index) in lbt">
          <div @click="lbtclick(index)">
-           <img :src="item.img" >
+           <img :src="item.img" class="lbt_img">
          </div>
         </SwiperItem>
-
-
       </Swiper>
 
-    <HomeList :shopList="shops"></HomeList>
+    <HomeList :shopList="shops"  v-on:pageclick="pageclick"></HomeList>
    </div>
 </template>
 
 <script>
   import NavBar from "components/common/navbar/NavBar.vue";
-  import {getHomelbt} from "../../notwork/home";
+  import {getshops} from "../../notwork/home";
   import HomeList from "../../components/common/shops/ShopList";
+  import {querylbt} from "../../notwork/home";
+
 
   import Swiper from "components/common/swiper/Swiper";
   import SwiperItem from "../../components/common/swiper/SwiperItem";
@@ -28,6 +28,7 @@
        data(){
          return{
            shops:[],
+           lbt:[],
            sid:null,
          }
        },
@@ -38,25 +39,36 @@
          SwiperItem
       },
     created() {
-         getHomelbt().then(res=>{
-          this.shops=res.data;
+         getshops().then(res=>{
+           this.shops=res.data;
          })
+       querylbt().then(res=>{
+        this.lbt=res.data
+
+      })
+
     },methods:{
          lbtclick:function (index) {
            this.$router.push({
              path:'/details',
              query:{
-               sid:this.shops[index].sid
+               sid:this.lbt[index].sid
              }
            })
-         }
-    }
+         },pageclick:function (data) {
+           this.shops=data
+      }
+    },
   }
 </script>
 
 <style scoped>
   .navbar-color{
     background-color: var(--color-tint);
+  }
+
+  .lbt_img{
+    cursor: pointer;
   }
 
 

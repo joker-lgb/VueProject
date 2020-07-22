@@ -1,17 +1,17 @@
 import {request} from "./request";
 
-export function showcard(uid) {
+export function showcart(uid) {
    return request({
-     url:'/querycard',
+     url:'/querycart',
      params:{
        uid
      }
    })
 }
 
-export function delcardbyid(cid) {
+export function delcartbyid(cid) {
   return request({
-    url:'/delcardbyid',
+    url:'/delcartbyid',
     params:{
       cid
     }

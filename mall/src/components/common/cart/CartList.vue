@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="cardlist.length">
+    <div v-if="cartlist.length">
       <table border="1">
         <tr>
           <th>商品编号</th>
@@ -11,13 +11,13 @@
           <th>操作</th>
         </tr>
         <tbody>
-        <tr v-for="(item,index) in cardlist">
+        <tr v-for="(item,index) in cartlist">
           <td>{{item.sid}}</td>
           <td>{{item.sname}}</td>
           <td><img :src="item.simg" width="50px" height="50px"></td>
           <td>{{item.scount}}</td>
           <td>{{item.totalprice}}</td>
-          <td><button type="button" @click="delcard(index)">移除</button></td>
+          <td><button type="button" @click="delcart(index)">移除</button></td>
         </tr>
         </tbody>
       </table>
@@ -33,12 +33,12 @@
 </template>
 
 <script>
-    import {delcardbyid} from "../../../notwork/card";
+    import {delcartbyid} from "../../../notwork/cart";
 
     export default {
-        name: "ShowCard",
+        name: "ShowCart",
         props:{
-          cardlist:{
+          cartlist:{
              type:Array,
           }
         },components:{
@@ -46,16 +46,16 @@
      },computed:{
           totalprice:function () {
             let sum=0;
-            for (let i = 0; i <this.cardlist.length ; i++) {
-              sum+=this.cardlist[i].totalprice;
+            for (let i = 0; i <this.cartlist.length ; i++) {
+              sum+=this.cartlist[i].totalprice;
             }
             return sum;
           }
        },methods:{
-          delcard:function (index) {
-              delcardbyid(this.cardlist[index].cid).then(res=>{
+          delcart:function (index) {
+              delcartbyid(this.cartlist[index].cid).then(res=>{
                 alert("SUCCESS")
-                this.cardlist.splice(index,1)
+                this.cartlist.splice(index,1)
               })
           }
       }

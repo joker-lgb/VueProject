@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar class="navbar-color"><div slot="center">购物车</div></NavBar>
-    <CardList :cardlist="cardlist" v-if="$store.state.loginstate"></CardList>
+    <CartList :cartlist="cartlist" v-if="$store.state.loginstate"></CartList>
     <div v-else>
       <h1>你还没有登录</h1>
     </div>
@@ -12,23 +12,23 @@
 
 <script>
     import NavBar from "components/common/navbar/NavBar";
-    import CardList from "../../components/common/card/CardList";
-    import {showcard} from "../../notwork/card";
+    import CartList from "../../components/common/cart/CartList";
+    import {showcart} from "../../notwork/cart";
 
     export default {
-        name: "Card",
+        name: "Cart",
         data(){
           return{
-            cardlist: null,
+            cartlist: null,
             uid:this.$store.state.loginstate.uid,
           }
         },
         components:{
           NavBar,
-         CardList
+          CartList
         },created() {
-           showcard(this.uid).then(res=>{
-            this.cardlist=res.data
+           showcart(this.uid).then(res=>{
+            this.cartlist=res.data
           })
       }
     }

@@ -10,7 +10,7 @@
            <h3>商品数量:</h3><button class="count" @click="increment">+</button>
            <input type="text"  v-model="count">
            <button class="count" @click="decrement">-</button><br>
-           <button class="btn" @click="addcard">加入购物车</button>
+           <button class="btn" @click="addcart">加入购物车</button>
          </div>
       <div class="shopitem"  v-else>
         <h3>商品名称:{{details.sname}}</h3>
@@ -19,7 +19,7 @@
         <h3>商品数量:</h3><button class="count" @click="increment">+</button>
         <input type="text"  v-model="count">
         <button class="count" @click="decrement">-</button><br>
-        <button class="btn" @click="addcard1">加入购物车</button>
+        <button class="btn" @click="addcart1">加入购物车</button>
       </div>
     </div>
   <div v-else>商品为空</div>
@@ -28,7 +28,7 @@
 <script>
   import {getshopitem} from "../../notwork/details";
   import NavBar from "components/common/navbar/NavBar.vue";
-  import {card} from "../../notwork/home";
+  import {cart} from "../../notwork/home";
 
   export default {
         name: "DetailsShop",
@@ -52,7 +52,7 @@
            if (this.count>1){
              this.count--
            }
-        },addcard:function () {
+        },addcart:function () {
            let  data={
              sid:this.details.sid,
              uid:this.$store.state.loginstate.uid,
@@ -61,15 +61,15 @@
              scount:this.count,
              simg:this.details.img
            }
-            card(data.sid,data.uid,data.sname,data.scount,data.totalprice,data.simg).then(res=>{
+            cart(data.sid,data.uid,data.sname,data.scount,data.totalprice,data.simg).then(res=>{
                alert("添加成功")
                this.$router.push({
-                 path:'/card'
+                 path:'/cart'
                })
             }).catch(res=>{
               console.log(res);
             });
-         },addcard1(){
+         },addcart1(){
            this.$router.push({
              path:'/login'
            })

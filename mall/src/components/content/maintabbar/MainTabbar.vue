@@ -4,11 +4,11 @@
         <img  slot="item-icon" src="~assets/img/tabbar/home.png">
         <div slot="item-text">首页</div>
       </TabBaritem>
-      <TabBaritem path="/category" activeColor="greed">
+      <TabBaritem path="/clothes" activeColor="greed">
         <img  slot="item-icon" src="~assets/img/tabbar/menu.png">
         <div slot="item-text">分类</div>
       </TabBaritem>
-      <TabBaritem path="/card" activeColor="blue">
+      <TabBaritem path="/cart" activeColor="blue">
         <img  slot="item-icon" src="~assets/img/tabbar/cart.png">
         <div slot="item-text">购物车</div>
       </TabBaritem>

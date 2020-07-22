@@ -1,14 +1,14 @@
 import {request} from "./request";
 
-export function getHomelbt() {
+export function getshops() {
     return request({
          url:"/queryshops"
     })
 }
 
-export function card(sid,uid,sname,scount,totalprice,simg) {
+export function cart(sid,uid,sname,scount,totalprice,simg) {
     return request({
-      url:"/card",
+      url:"/cart",
       params:{
         sid,
         uid,
@@ -18,4 +18,19 @@ export function card(sid,uid,sname,scount,totalprice,simg) {
         simg,
       }
     })
+}
+
+export function getpage(currentpage) {
+    return request({
+      url:'/queryshops',
+      params:{
+        currentpage
+      }
+    })
+}
+
+export function querylbt() {
+  return request({
+    url:'/querylbt',
+  })
 }
